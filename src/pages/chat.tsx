@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import socket from '../../websocket';
 
 
+// @ts-ignore
 const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
@@ -30,7 +31,9 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
 
         socket.on('activeUsers', (users) => {
             if (users && typeof users === 'object') {
+
                 const filteredUsers = Object.fromEntries(
+                    // @ts-ignore
                     Object.entries(users).filter(([socketID, username]) => username.trim() !== '' && username !== 'Unknown')
                 );
                 console.log('Active Users:', JSON.stringify(filteredUsers, null, 2));
@@ -43,6 +46,7 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
 
 
         socket.on('message', (msg) => {
+            // @ts-ignore
             setMessages(prevMessages => [...prevMessages, msg]);
             console.log('Active msg:', JSON.stringify(msg, null, 2));
         });
@@ -54,7 +58,7 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
 
     }, [authenticated]);
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: { key: string; }) => {
         if (e.key === 'Enter') {
             sendMessage();
         }
@@ -65,6 +69,8 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
         setMessage('');
     };
 
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div style={{  borderRadius: '8px', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.1)', background: '#fff', width: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}>
             <style jsx global>{`

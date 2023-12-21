@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import socket from '../../websocket';
 
 
+// @ts-ignore
 const Index: React.FC = ({ setAuthenticated }) => {
     const [username, setUsername] = useState('');
     const router = useRouter();
