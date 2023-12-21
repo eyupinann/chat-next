@@ -1,4 +1,12 @@
+## Project Purpose
+The aim of this project is to establish realtime communication between two users. You can use it as you wish.
+<p float="left">
+  <img src="public/screen1.png" width="400" alt="image 2"/> 
+  <img src="public/screen2.png" width="400" alt="image 1"/> 
+</p>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 ## Getting Started
 
