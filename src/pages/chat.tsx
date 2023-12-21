@@ -69,8 +69,12 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
         setMessage('');
     };
 
-    // @ts-ignore
-    // @ts-ignore
+    type MessageType = {
+        usernames: string;
+        message: string;
+    };
+
+
     return (
         <div style={{  borderRadius: '8px', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.1)', background: '#fff', width: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}>
             <style jsx global>{`
@@ -92,7 +96,7 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
                     {Object.entries(activeUsers).map(([socketID, user]) => (
                         <li key={socketID} style={{ marginLeft: '20px', marginBottom: '8px', fontSize: '25px', fontWeight: 'bold', position: 'relative' ,color: 'white'}}>
                             <span style={{ transform: 'translateY(-50%)', color: 'green', fontSize: '42px' }}>&#8226;</span>
-                            {user}
+                            {String(user)}
                         </li>
                     ))}
                 </ul>
@@ -101,7 +105,7 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
             <div style={{ flex: '3', overflowY: 'auto' }}>
 
                 <ul style={{ listStyle: 'none', padding: 0 }}>
-                    {messages.map((msg, index) => (
+                    {messages.map((msg : MessageType, index) => (
                         <li key={index} style={{ marginBottom: '8px', fontSize: '22px', borderBottom: '1px solid #eee', paddingBottom: '8px', display: 'flex', justifyContent: msg.usernames === usernames ? 'flex-end' : 'flex-start' }}>
                             {msg.usernames === usernames ? (
                                 <div>
@@ -114,11 +118,6 @@ const Chat: React.FC = ({ authenticated, username, handleLogout }) => {
                                     <div style={{"backgroundColor":"aliceblue","maxWidth":"300px","overflowY":"auto","overflowX":"auto","padding":"10px","borderRadius":"10px","fontSize":"15px", "width" : "150px"}}>{msg.message}</div>
                                 </div>
                             )}
-
-
-
-
-
                         </li>
                     ))}
                 </ul>
